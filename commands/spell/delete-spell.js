@@ -17,7 +17,7 @@ module.exports = {
 
     let elemName = interaction.options.getString('name', true);
     let id = utils.getID(db, tableName, idType, elemName);
-    if (id > 0){ //item found
+    if (id > 0){ //spell found
       output = elemName + " has been removed.";
 
       const stmt = db.prepare(`DELETE FROM ${tableName} WHERE ${idType} = ?`); 
