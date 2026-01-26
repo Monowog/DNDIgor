@@ -1,0 +1,4 @@
+/config/default.js
+*.db
+*.db-shm
+*.db-wal
