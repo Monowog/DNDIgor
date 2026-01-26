@@ -43,6 +43,18 @@ function getNonNullValues(row){
   return nonNullValues;
 }
 
+function statFormat(value, abbr, numStats){
+  let output = "";
+  if(value){ 
+    output += "  " + value + " " + abbr; 
+    numStats -= 1;
+    if(numStats === 1) output += " and";
+    if(numStats > 1) output += ",";
+  }
+
+  return [output, numStats];
+}
+
 function setInfo(db, tableName, idType, elemName, column, value, first){
   if(columnExists(db, tableName, column)){
     let id = getID(db, tableName, idType, elemName);
@@ -88,4 +100,5 @@ module.exports = {
   getNonNullValues,
   setInfo,
   setStatInfo,
+  statFormat,
 };

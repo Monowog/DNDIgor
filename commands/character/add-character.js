@@ -83,7 +83,12 @@ module.exports = {
         output += utils.setInfo(db, tableName, idType, charName, "age", age, isFirst);
       }
 
-      if(race||charClass||weight||height||age) output += ".";
+      let id = utils.getID(db, tableName, idType, charName);
+
+      const statStmt = db.prepare('INSERT INTO stats (char_id) VALUES (?);');
+      statStmt.run(id);
+
+      if(race||charClass||weight||height||age) output += "."; 
     } else {
       output = utils.setInfo(interaction.client.db, "characters", "char_id", charName, "name", charName, true);
     }
