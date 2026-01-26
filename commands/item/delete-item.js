@@ -21,7 +21,7 @@ module.exports = {
       output = elemName + " has been removed.";
 
       const stmt = db.prepare(`DELETE FROM ${tableName} WHERE ${idType} = ?`); 
-      const itemStmt = db.prepare(`DELETE FROM character_items WHERE char_id = ?`);
+      const itemStmt = db.prepare(`DELETE FROM character_items WHERE item_id = ?`);
 
       stmt.run(id);
       itemStmt.run(id);
