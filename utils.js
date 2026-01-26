@@ -63,9 +63,29 @@ function setInfo(db, tableName, idType, elemName, column, value, first){
   return output;
 }
 
+function setStatInfo(db, tableName, idType, id, elemName, column, value, first){
+  if(columnExists(db, tableName, column)){
+    if (id >= 0){
+      const stmt = db.prepare(`UPDATE ${tableName}
+        SET ${column} = ?
+        WHERE ${idType} = ?;
+      `); 
+      stmt.run(value, id);
+      if(first) output = elemName + "'s " + column + " is now " + value;
+      if(!first) output = ", " + column + " is now " + value;
+    } else {
+      output = `Error: No characters named ` + elemName + " found.";
+    }
+  } else {
+    output = "Error: No statistic named " + column + " found.";
+  }
+  return output;
+}
+
 module.exports = {
   list,
   getID,
   getNonNullValues,
   setInfo,
+  setStatInfo,
 };

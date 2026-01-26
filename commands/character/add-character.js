@@ -83,7 +83,7 @@ module.exports = {
         output += utils.setInfo(db, tableName, idType, charName, "age", age, isFirst);
       }
 
-      output += "."
+      if(race||charClass||weight||height||age) output += ".";
     } else {
       output = utils.setInfo(interaction.client.db, "characters", "char_id", charName, "name", charName, true);
     }
