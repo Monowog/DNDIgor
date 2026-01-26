@@ -21,10 +21,42 @@ function list(db, tableName){
   return output;
 }
 
-function getID(tableName, idType, elemName){
-  
+function getID(db, tableName, idType, elemName){
+  let id = -1;
+  const row = db.prepare(`SELECT ${idType} FROM ${tableName} WHERE name = ? COLLATE NOCASE`).get(elemName); // query id
+  if(row){
+    id = row[idType];
+  } 
+  return id;
+}
+
+function columnExists(db, tableName, columnName) {
+  const columns = db.prepare(`PRAGMA table_info(${tableName})`).all();
+  return columns.some(column => column.name === columnName);
+}
+
+function setInfo(db, tableName, idType, elemName, column, value, first){
+  if(columnExists(db, tableName, column)){
+    let id = getID(db, tableName, idType, elemName);
+    if (id >= 0){
+      const stmt = db.prepare(`UPDATE ${tableName}
+        SET ${column} = ?
+        WHERE ${idType} = ?;
+      `); 
+      stmt.run(value, id);
+      if(first) output = elemName + "'s " + column + " is now " + value;
+      if(!first) output = ", " + column + " is now " + value;
+    } else {
+      output = `Error: No ${tableName} named ` + elemName + " found.";
+    }
+  } else {
+    output = "Error: No characteristic named " + column + " found.";
+  }
+  return output;
 }
 
 module.exports = {
   list,
+  getID,
+  setInfo
 };

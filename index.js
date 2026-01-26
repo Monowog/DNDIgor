@@ -108,7 +108,6 @@ client.login(process.env.TOKEN);
 
 client.on(Events.InteractionCreate, async (interaction) => {
   if (!interaction.isChatInputCommand()) return; 
-  console.log(interaction);
 
   const command = interaction.client.commands.get(interaction.commandName);
 	if (!command) {

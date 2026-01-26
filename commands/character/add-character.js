@@ -1,3 +1,4 @@
+const utils = require('../../utils.js');
 const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
@@ -41,24 +42,51 @@ module.exports = {
   ),
 	async execute(interaction) {
     let output = "";
+    let tableName = "characters";
+    let idType = "char_id";
+
     let charName = interaction.options.getString('name', true);
     let level = interaction.options.getInteger('level', true);
+    let race = interaction.options.getString('race');
+    let charClass = interaction.options.getString('class');
+    let weight = interaction.options.getNumber('weight');
+    let height = interaction.options.getString('height');
+    let age = interaction.options.getInteger('age');
 
-    const charStmt = interaction.client.db.prepare(`INSERT INTO characters (name, level) VALUES (?,?)
+    const charStmt = interaction.client.db.prepare(`INSERT INTO ${tableName} (name, level) VALUES (?,?)
     ON CONFLICT(name)
     DO NOTHING;`); 
     const info = charStmt.run(charName,level);
     
     if(info.changes > 0) {
-      output = "Welcome to the party, " + charName + "!";
+      output = "Welcome to the party, " + charName + "! ";
 
-      //let char_id = getCharID(charName);
+      db = interaction.client.db;
 
-      //const statStmt = db.prepare('INSERT INTO stats (char_id) VALUES (?);');
-      //statStmt.run(char_id);
+      let isFirst = true;
+      if(race){
+        output += utils.setInfo(db, tableName, idType, charName, "race", race, isFirst);
+        isFirst = false;
+      }
+      if(charClass){
+        output += utils.setInfo(db, tableName, idType, charName, "class", charClass, isFirst);
+        isFirst = false;
+      }
+      if(weight){
+        output += utils.setInfo(db, tableName, idType, charName, "weight", weight, isFirst);
+        isFirst = false;
+      }
+      if(height){
+        output += utils.setInfo(db, tableName, idType, charName, "height", height, isFirst);
+        isFirst = false;
+      }
+      if(age){
+        output += utils.setInfo(db, tableName, idType, charName, "age", age, isFirst);
+      }
+
+      output += "."
     } else {
-      output = "You Goofed Up!";
-      //setCharacterInfo("name", charName, charName);
+      output = utils.setInfo(interaction.client.db, "characters", "char_id", charName, "name", charName, true);
     }
 
 		await interaction.reply(output);
