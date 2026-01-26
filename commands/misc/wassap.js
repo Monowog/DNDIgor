@@ -2,7 +2,7 @@ const { SlashCommandBuilder } = require('discord.js');
 
 const data = new SlashCommandBuilder()
 	.setName('wassap')
-	.setDescription('Replies with a greeting')
+	.setDescription('Replies with a greeting.')
 	.addIntegerOption((option) => 
     option
       .setName('input')

@@ -47,7 +47,7 @@ A Discord bot used to track character names, stats, items, spells, and more.
 
 - /item-info [item name]: Responds with a description of an item based on its characteristics.
 
-- /set-item-info [item name] (desc|cost|weight): Updates an item's characteristics to new values. 
+- /set-item-info [item name] (rarity|desc|cost|weight): Updates an item's characteristics to new values. 
 
 
 ### Weapon Commands
@@ -63,7 +63,7 @@ A Discord bot used to track character names, stats, items, spells, and more.
 
 - /weapon-info [weapon name]: Responds with a description of a weapon based on its characteristics.
 
-- /set-weapon-info [weapon name] (desc|damage|weight): Updates a weapon's characteristics to new values.
+- /set-weapon-info [weapon name] (rarity|desc|damage|weight): Updates a weapon's characteristics to new values.
 
 
 ### Spell Commands

@@ -25,21 +25,23 @@ db.exec(`
   CREATE TABLE IF NOT EXISTS weapons(
     weapon_id INTEGER PRIMARY KEY NOT NULL, 
     name TEXT NOT NULL COLLATE NOCASE UNIQUE, 
-    desc TEXT, 
+    rarity TEXT,
+    description TEXT, 
     damage TEXT, 
     weight REAL
   );
   CREATE TABLE IF NOT EXISTS items(
     item_id INTEGER PRIMARY KEY NOT NULL, 
     name TEXT NOT NULL COLLATE NOCASE UNIQUE, 
-    desc TEXT, 
+    rarity TEXT,
+    description TEXT, 
     weight REAL,
     cost TEXT
   );
   CREATE TABLE IF NOT EXISTS spells(
     spell_id INTEGER PRIMARY KEY NOT NULL, 
     name TEXT NOT NULL COLLATE NOCASE UNIQUE, 
-    desc TEXT, 
+    description TEXT, 
     damage TEXT, 
     type TEXT, 
     level INTEGER, 
@@ -61,7 +63,7 @@ db.exec(`
     cs_id INTEGER PRIMARY KEY NOT NULL, 
     char_id INTEGER NOT NULL, 
     spell_id INTEGER NOT NULL, 
-    ready TEXT
+    ready INTEGER
   );
   CREATE TABLE IF NOT EXISTS stats(
     stats_id INTEGER PRIMARY KEY NOT NULL, 
