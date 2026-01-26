@@ -35,6 +35,14 @@ function columnExists(db, tableName, columnName) {
   return columns.some(column => column.name === columnName);
 }
 
+function getNonNullValues(row){
+  const nonNullValues = Object.fromEntries(
+  Object.entries(row).filter(([key, value]) => value !== null)
+  );
+
+  return nonNullValues;
+}
+
 function setInfo(db, tableName, idType, elemName, column, value, first){
   if(columnExists(db, tableName, column)){
     let id = getID(db, tableName, idType, elemName);
@@ -58,5 +66,6 @@ function setInfo(db, tableName, idType, elemName, column, value, first){
 module.exports = {
   list,
   getID,
-  setInfo
+  getNonNullValues,
+  setInfo,
 };

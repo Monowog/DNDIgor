@@ -44,6 +44,7 @@ module.exports = {
     let output = "";
     let tableName = "characters";
     let idType = "char_id";
+    const db = interaction.client.db;
 
     let charName = interaction.options.getString('name', true);
     let level = interaction.options.getInteger('level', true);
@@ -53,15 +54,13 @@ module.exports = {
     let height = interaction.options.getString('height');
     let age = interaction.options.getInteger('age');
 
-    const charStmt = interaction.client.db.prepare(`INSERT INTO ${tableName} (name, level) VALUES (?,?)
+    const charStmt = db.prepare(`INSERT INTO ${tableName} (name, level) VALUES (?,?)
     ON CONFLICT(name)
     DO NOTHING;`); 
     const info = charStmt.run(charName,level);
     
     if(info.changes > 0) {
       output = "Welcome to the party, " + charName + "! ";
-
-      db = interaction.client.db;
 
       let isFirst = true;
       if(race){
