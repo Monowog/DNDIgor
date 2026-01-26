@@ -31,7 +31,7 @@ module.exports = {
     let ready = (rdy) ? 1 : 0; //convert bool to int
 
     let charID = utils.getID(db, "characters", "char_id", charName); 
-    let spellID = utils.getID(db, "spells", "spell_id", spellName)
+    let spellID = utils.getID(db, "spells", "spell_id", spellName);
     if(spellID < 0){
       output = "Error: No spell named " + spellName + " found.";
     }
