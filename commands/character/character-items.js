@@ -19,7 +19,9 @@ module.exports = {
     const stmt = db.prepare('SELECT * FROM character_items WHERE char_id = ?');
     const itemList = stmt.all(charID);
     
-    if (itemList.length === 0) {
+    if(charID < 1) {
+      output = "Error: no characters named " + charName + " were found.";
+    } else if (itemList.length === 0) {
       output = charName + " doesn't have any items in their inventory.";
     } else {
       output = charName + " has";

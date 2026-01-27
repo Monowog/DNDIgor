@@ -19,7 +19,9 @@ module.exports = {
     const stmt = db.prepare('SELECT * FROM character_spells WHERE char_id = ?');
     const spellList = stmt.all(charID);
     
-    if (spellList.length === 0) {
+    if(charID < 1) {
+      output = "Error: no characters named " + charName + " were found.";
+    } else if (spellList.length === 0) {
       output = charName + " doesn't know any spells.";
     } else {
       output = charName + " has";

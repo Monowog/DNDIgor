@@ -19,7 +19,9 @@ module.exports = {
     const stmt = db.prepare('SELECT * FROM character_weapons WHERE char_id = ?');
     const weaponList = stmt.all(charID);
     
-    if (weaponList.length === 0) {
+    if(charID < 1) {
+      output = "Error: no characters named " + charName + " were found.";
+    } else if (weaponList.length === 0) {
       output = charName + " doesn't have a weapon.";
     } else {
       output = charName + " has a";

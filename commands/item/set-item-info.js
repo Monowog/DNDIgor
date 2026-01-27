@@ -67,7 +67,7 @@ module.exports = {
       if(output === "") output += "Error: no information input";
       output += "."; 
     } else {
-      output = "Error: no items named " + elemName + " found.";
+      output = "Error: no items named " + elemName + " were found.";
     }
 
 		await interaction.reply(output);

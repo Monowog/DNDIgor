@@ -2,7 +2,7 @@ const { SlashCommandBuilder } = require('discord.js');
 const utils = require('../../utils.js');
 
 module.exports = {
-	data: new SlashCommandBuilder().setName('ready-spell').setDescription("Readies or unreadies a character's known spell.")
+	data: new SlashCommandBuilder().setName('toggle-ready-spell').setDescription("Readies or unreadies a character's known spell.")
   .addStringOption((option) =>
     option
       .setName("character")

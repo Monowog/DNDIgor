@@ -37,7 +37,7 @@ module.exports = {
         output = "Error: No item named " + itemName + " found.";
       }
       if(charID < 0){
-        output = "Error: No character named " + charName + " found.";
+        output = "Error: No characters named " + charName + " were found.";
       }
       if(charID > 0 && itemID > 0) {
         const itemRow = db.prepare('SELECT ci_id FROM character_items WHERE char_id = ? AND item_id = ?;').get(charID, itemID);

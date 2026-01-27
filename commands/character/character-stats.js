@@ -52,7 +52,7 @@ module.exports = {
         output += ".";
       }
     } else {
-      output = `Error: No characters named ` + elemName + " found.";
+      output = `Error: No characters named ` + elemName + " were found.";
     }
 		await interaction.reply(output);
 	},
