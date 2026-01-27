@@ -6,7 +6,7 @@ module.exports = {
   .addStringOption((option) =>
     option
       .setName("character")
-      .setDescription("The character who you want to check the spells of")
+      .setDescription("The character who you want to list the spells of")
       .setRequired(true)
   ),
 	async execute(interaction) {

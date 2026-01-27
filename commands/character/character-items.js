@@ -6,7 +6,7 @@ module.exports = {
   .addStringOption((option) =>
     option
       .setName("character")
-      .setDescription("The character who you want to check the items of")
+      .setDescription("The character who you want to list the items of")
       .setRequired(true)
   ),
 	async execute(interaction) {

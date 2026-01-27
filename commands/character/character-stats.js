@@ -6,7 +6,7 @@ module.exports = {
   .addStringOption((option) => 
     option
       .setName("name")
-      .setDescription("The character's name")
+      .setDescription("The character who you want to list the stats of")
       .setRequired(true)
   ),
 	async execute(interaction) {
