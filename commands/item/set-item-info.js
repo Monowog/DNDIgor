@@ -29,6 +29,11 @@ module.exports = {
       .setName("cost")
       .setDescription("The cost of one item (ex. 3sp, 5cp)")
   )
+  .addStringOption((option) => 
+    option
+      .setName("bonuses")
+      .setDescription("The stat/effect bonuses an item provides (e.g. +2 dex and advantage against cold attacks")
+  )
   ,
 	async execute(interaction) {
     let output = "";
@@ -41,6 +46,7 @@ module.exports = {
     let desc = interaction.options.getString('description');
     let weight = interaction.options.getNumber('weight');
     let cost = interaction.options.getString('cost');
+    let bonuses = interaction.options.getString('bonuses');
 
     const id = utils.getID(db, tableName, idType, elemName);
     
@@ -51,16 +57,20 @@ module.exports = {
         output += utils.setInfo(db, tableName, idType, elemName, "rarity", rarity, isFirst);
         isFirst = false;
       }
-      if(desc){
-        output += utils.setInfo(db, tableName, idType, elemName, "description", desc, isFirst);
-        isFirst = false;
-      }
       if(weight){
         output += utils.setInfo(db, tableName, idType, elemName, "weight", weight, isFirst);
         isFirst = false;
       }
       if(cost){
         output += utils.setInfo(db, tableName, idType, elemName, "cost", cost, isFirst);
+        isFirst = false;
+      }
+      if(bonuses){
+        output += utils.setInfo(db, tableName, idType, elemName, "bonuses", bonuses, isFirst);
+        isFirst = false;
+      }
+      if(desc){
+        output += utils.setInfo(db, tableName, idType, elemName, "description", desc, isFirst);
         isFirst = false;
       }
 

@@ -2,7 +2,7 @@ const { SlashCommandBuilder } = require('discord.js');
 const utils = require('../../utils.js');
 
 module.exports = {
-	data: new SlashCommandBuilder().setName('toggle-ready-spell').setDescription("Readies or unreadies a character's known spell.")
+	data: new SlashCommandBuilder().setName('toggle-ready').setDescription("Readies or unreadies a character's known spell.")
   .addStringOption((option) =>
     option
       .setName("character")
@@ -25,10 +25,10 @@ module.exports = {
     let charID = utils.getID(db, "characters", "char_id", charName);
     let spellID = utils.getID(db, "spells", "spell_id", spellName);
     if(spellID < 0){
-      output = "Error: No spell named " + spellName + " found.";
+      output = "Error: No spells named " + spellName + " found.";
     }
     if(charID < 0){
-      output = "Error: No character named " + charName + " found.";
+      output = "Error: No characters named " + charName + " found.";
     }
     if(charID > 0 && spellID > 0) {
       const spellRow = db.prepare('SELECT ready FROM character_spells WHERE char_id = ? AND spell_id = ?;').get(charID, spellID);

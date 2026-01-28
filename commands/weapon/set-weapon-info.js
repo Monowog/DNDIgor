@@ -26,6 +26,11 @@ module.exports = {
   )
   .addStringOption((option) => 
     option
+      .setName("range")
+      .setDescription("The weapon's range")
+  )
+  .addStringOption((option) => 
+    option
       .setName("description")
       .setDescription("A description of the weapon")
   )
@@ -40,6 +45,7 @@ module.exports = {
     let weight = interaction.options.getNumber('weight');
     let rarity = interaction.options.getString('rarity');
     let damage = interaction.options.getString('damage');
+    let range = interaction.options.getString('range');
     let desc = interaction.options.getString('description');
 
     const id = utils.getID(db, tableName, idType, elemName);
@@ -52,6 +58,10 @@ module.exports = {
       }
       if(damage){
         output += utils.setInfo(db, tableName, idType, elemName, "damage", damage, isFirst);
+        isFirst = false;
+      }
+      if(range){
+        output += utils.setInfo(db, tableName, idType, elemName, "range", range, isFirst);
         isFirst = false;
       }
       if(weight){

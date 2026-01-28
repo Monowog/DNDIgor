@@ -22,15 +22,15 @@ module.exports = {
     if(charID < 1) {
       output = "Error: no characters named " + charName + " were found.";
     } else if (weaponList.length === 0) {
-      output = charName + " doesn't have a weapon.";
+      output = charName + " doesn't have any weapons.";
     } else {
-      output = charName + " has a";
+      output = charName + " has";
       for(let i = 0; i < weaponList.length; i++){
         const weaponRow = db.prepare('SELECT name FROM weapons WHERE weapon_id = ?').get(weaponList[i].weapon_id);
-        output += " " + weaponRow.name;
-        if(weaponList[i].ready) output += " with proficiency";
+        output += " a " + weaponRow.name;
+        if(weaponList[i].mastery) output += " with mastery";
         if(!(i === weaponList.length-1) && weaponList.length > 2) output += ",";
-        if(i === weaponList.length-2) output += " and a";
+        if(i === weaponList.length-2) output += " and";
       }
       output += ".";
     }

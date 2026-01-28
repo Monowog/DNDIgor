@@ -15,7 +15,9 @@ function list(db, tableName){
     if(tableName === "characters") output = "There are currently no characters in the party.";
     if(tableName === "items") output = "There are currently no items in the pool.";
     if(tableName === "weapons") output = "There are currently no weapons available.";
-    if(tableName === "spells") output = "There are currently no spells on the spell list";
+    if(tableName === "spells") output = "There are currently no spells on the spell list.";
+  } else {
+    output += ".";
   }
 
   return output;

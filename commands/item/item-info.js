@@ -24,13 +24,25 @@ module.exports = {
       numInfo = Object.keys(values).length-2;
       
       if(numInfo>0) output += values.name + " is"; //figure out the grammar of the output string
-      if(values.rarity) {output += " " + values.rarity; numInfo -= 1;}
-      if(values.rarity && numInfo > 1) {output += ",";}
-      if(values.weight) {output += " weighs " + values.weight + "lbs"; numInfo -= 1;}
-      if(values.weight && numInfo > 1) {output += ",";}
-      if(values.weight && numInfo === 1) output += " and";
-      if(values.cost){output += " its cost is " + values.cost; numInfo -= 1;}
-      if(numInfo > 0 && values.cost) output += " and";
+      if(values.rarity) {output += " " + values.rarity; 
+        numInfo -= 1;
+        if(numInfo > 1) output += ",";
+        if(numInfo === 1) output += " and"
+      }
+      if(values.weight) {output += " weighs " + values.weight + "lbs"; 
+        numInfo -= 1;
+        if(numInfo > 1) output += ",";
+        if(numInfo === 1) output += " and";
+      }
+      if(values.cost){output += " its cost is " + values.cost; 
+        numInfo -= 1;
+        if(numInfo > 1) output += ",";
+        if(numInfo === 1) output += " and";
+      }
+      if(values.cost){output += " its bonuses are " + values.bonuses; 
+        numInfo -= 1;
+        if(numInfo === 1) output += " and";
+      }
       if(values.description) output += " its description is '" + values.description + "'";
 
       if(output === "") output = values.name + " doesn't have any information yet";

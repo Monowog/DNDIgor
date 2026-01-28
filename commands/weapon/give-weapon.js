@@ -17,8 +17,8 @@ module.exports = {
   )
   .addBooleanOption((option) =>
     option
-      .setName("proficiency")
-      .setDescription("Whether or not the character is proficient with the weapon")
+      .setName("mastery")
+      .setDescription("Whether or not the character has mastered the weapon")
   ),
 	async execute(interaction) {
     let output = "";
@@ -26,9 +26,9 @@ module.exports = {
 
     let charName = interaction.options.getString("character", true);
     let weaponName = interaction.options.getString("weapon", true);
-    let prof = interaction.options.getBoolean("proficiency") ?? false;
+    let mstry = interaction.options.getBoolean("mastery") ?? false;
 
-    let proficient = (prof) ? 1 : 0; //convert bool to int
+    let mastery = (mstry) ? 1 : 0; //convert bool to int
 
     let charID = utils.getID(db, "characters", "char_id", charName); 
     let weaponID = utils.getID(db, "weapons", "weapon_id", weaponName);
@@ -44,10 +44,10 @@ module.exports = {
       if(weaponRow) { //weapon already exists in inventory
         output = "Error: " + charName + " already has a " + weaponName + ".";
       } else { //just give the weapon
-        let giveStmt = db.prepare('INSERT INTO character_weapons(char_id, weapon_id, proficient) VALUES (?,?,?);');
-        giveStmt.run(charID, weaponID, proficient);
+        let giveStmt = db.prepare('INSERT INTO character_weapons(char_id, weapon_id, mastery) VALUES (?,?,?);');
+        giveStmt.run(charID, weaponID, mastery);
         output = charName + " now has a " + weaponName;
-        if(proficient) output += " and is proficient with it";
+        if(mastery) output += " and has mastered it";
         output += "!";
       }
     }

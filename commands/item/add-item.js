@@ -29,6 +29,11 @@ module.exports = {
       .setName("cost")
       .setDescription("The cost of one item (ex. 3sp, 5cp)")
   )
+  .addStringOption((option) => 
+    option
+      .setName("bonuses")
+      .setDescription("The stat/effect bonuses an item provides (e.g. +2 dex and advantage against cold attacks")
+  )
   ,
 	async execute(interaction) {
     let output = "";
@@ -41,6 +46,7 @@ module.exports = {
     let desc = interaction.options.getString('description');
     let weight = interaction.options.getNumber('weight');
     let cost = interaction.options.getString('cost');
+    let bonuses = interaction.options.getString('options');
 
     const stmt = db.prepare(`INSERT INTO ${tableName} (name) VALUES (?)
     ON CONFLICT(name)
@@ -55,10 +61,6 @@ module.exports = {
         output += utils.setInfo(db, tableName, idType, elemName, "rarity", rarity, isFirst);
         isFirst = false;
       }
-      if(desc){
-        output += utils.setInfo(db, tableName, idType, elemName, "description", desc, isFirst);
-        isFirst = false;
-      }
       if(weight){
         output += utils.setInfo(db, tableName, idType, elemName, "weight", weight, isFirst);
         isFirst = false;
@@ -67,8 +69,16 @@ module.exports = {
         output += utils.setInfo(db, tableName, idType, elemName, "cost", cost, isFirst);
         isFirst = false;
       }
+      if(bonuses){
+        output += utils.setInfo(db, tableName, idType, elemName, "bonuses", bonuses, isFirst);
+        isFirst = false;
+      }
+      if(desc){
+        output += utils.setInfo(db, tableName, idType, elemName, "description", desc, isFirst);
+        isFirst = false;
+      }
 
-      if(rarity||desc||weight||cost) output += "."; 
+      if(rarity||desc||weight||cost||bonuses) output += "."; 
     } else {
       output = utils.setInfo(interaction.client.db, "items", "item_id", elemName, "name", elemName, true);
     }
