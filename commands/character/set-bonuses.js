@@ -2,7 +2,7 @@ const utils = require('../../utils.js');
 const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
-  data: new SlashCommandBuilder().setName('set-character-stats').setDescription('Changes the stat-bonuses of a character.')
+  data: new SlashCommandBuilder().setName('set-bonuses').setDescription('Changes the stat-bonuses of a character.')
   .addStringOption((option) => 
     option
       .setName("name")
