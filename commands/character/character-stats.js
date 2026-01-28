@@ -18,7 +18,7 @@ module.exports = {
     let elemName = interaction.options.getString('name', true);
     let id = utils.getID(db, "characters", idType, elemName);
     if (id > 0){
-      const data = db.prepare(`SELECT * FROM ${tableName} WHERE ${idType} = ?`).get(id);
+      const data = db.prepare(`SELECT hp, max_hp, str, dex, con, int, wis, cha, speed FROM ${tableName} WHERE ${idType} = ?`).get(id);
       values = utils.getNonNullValues(data);
 
       numStats = Object.keys(values).length-2;
