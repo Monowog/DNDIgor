@@ -4,8 +4,9 @@
   "description": "A Discord bot used to track character names, stats, items, spells, and more.",
   "main": "index.js",
   "scripts": {
-    "app": "nodemon bot.js",
+    "app": "node index.js",
     "start": "node index.js",
+    "build": "node build.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,6 +22,7 @@
   },
   "homepage": "https://github.com/Monowog/DNDIgor#readme",
   "dependencies": {
+    "@babel/node": "^7.28.6",
     "better-sqlite3": "^12.6.2",
     "discord.js": "^14.25.1",
     "dotenv": "^17.2.3",
