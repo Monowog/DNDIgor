@@ -28,7 +28,8 @@ db.exec(`
     rarity TEXT,
     description TEXT, 
     damage TEXT, 
-    weight REAL
+    weight REAL,
+    range INTEGER
   );
   CREATE TABLE IF NOT EXISTS items(
     item_id INTEGER PRIMARY KEY NOT NULL, 
@@ -36,7 +37,8 @@ db.exec(`
     rarity TEXT,
     description TEXT, 
     weight REAL,
-    cost TEXT
+    cost TEXT,
+    bonuses TEXT
   );
   CREATE TABLE IF NOT EXISTS spells(
     spell_id INTEGER PRIMARY KEY NOT NULL, 
@@ -45,7 +47,14 @@ db.exec(`
     damage TEXT, 
     type TEXT, 
     level INTEGER, 
-    components TEXT
+    components TEXT,
+    duration TEXT,
+    range TEXT,
+    casting_time TEXT
+  );
+  CREATE TABLE IF NOT EXISTS groups(
+    group_id INTEGER PRIMARY KEY NOT NULL, 
+    name TEXT NOT NULL COLLATE NOCASE UNIQUE
   );
   CREATE TABLE IF NOT EXISTS character_items(
     ci_id INTEGER PRIMARY KEY NOT NULL, 
@@ -57,13 +66,18 @@ db.exec(`
     cw_id INTEGER PRIMARY KEY NOT NULL, 
     char_id INTEGER NOT NULL, 
     weapon_id INTEGER NOT NULL, 
-    proficient BOOLEAN
+    mastery BOOLEAN
   );
   CREATE TABLE IF NOT EXISTS character_spells(
     cs_id INTEGER PRIMARY KEY NOT NULL, 
     char_id INTEGER NOT NULL, 
     spell_id INTEGER NOT NULL, 
     ready INTEGER
+  );
+  CREATE TABLE IF NOT EXISTS character_groups(
+    cg_id INTEGER PRIMARY KEY NOT NULL, 
+    char_id INTEGER NOT NULL, 
+    group_id INTEGER NOT NULL
   );
   CREATE TABLE IF NOT EXISTS stats(
     stats_id INTEGER PRIMARY KEY NOT NULL, 
@@ -76,7 +90,13 @@ db.exec(`
     int INTEGER, 
     wis INTEGER, 
     cha INTEGER, 
-    speed INTEGER
+    speed INTEGER,
+    str_bonus INTEGER, 
+    dex_bonus INTEGER, 
+    con_bonus INTEGER, 
+    int_bonus INTEGER, 
+    wis_bonus INTEGER, 
+    cha_bonus INTEGER
   );
 `);
 

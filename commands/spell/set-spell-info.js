@@ -31,6 +31,21 @@ module.exports = {
   )
   .addStringOption((option) => 
     option
+      .setName("duration")
+      .setDescription("How long the spell lasts")
+  )
+  .addStringOption((option) => 
+    option
+      .setName("casting-time")
+      .setDescription("When the spell can be cast (eg. action, bonus action, response, etc)")
+  )
+  .addStringOption((option) => 
+    option
+      .setName("range")
+      .setDescription("The range of the spell")
+  )
+  .addStringOption((option) => 
+    option
       .setName("description")
       .setDescription("A description of the spell")
   )
@@ -46,6 +61,9 @@ module.exports = {
     let type = interaction.options.getString('type');
     let damage = interaction.options.getString('damage');
     let components = interaction.options.getString('components');
+    let range = interaction.options.getString('range');
+    let casting_time = interaction.options.getString('casting-time');
+    let duration = interaction.options.getString('duration');
     let desc = interaction.options.getString('description');
 
     const id = utils.getID(db, tableName, idType, elemName);
@@ -62,6 +80,18 @@ module.exports = {
       }
       if(damage){
         output += utils.setInfo(db, tableName, idType, elemName, "damage", damage, isFirst);
+        isFirst = false;
+      }
+      if(range){
+        output += utils.setInfo(db, tableName, idType, elemName, "range", range, isFirst);
+        isFirst = false;
+      }
+      if(duration){
+        output += utils.setInfo(db, tableName, idType, elemName, "duration", duration, isFirst);
+        isFirst = false;
+      }
+      if(casting_time){
+        output += utils.setInfo(db, tableName, idType, elemName, "casting_time", casting_time, isFirst);
         isFirst = false;
       }
       if(components){
