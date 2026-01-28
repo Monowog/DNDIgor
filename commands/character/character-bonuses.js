@@ -21,7 +21,7 @@ module.exports = {
       const data = db.prepare(`SELECT str_bonus, dex_bonus, con_bonus, int_bonus, wis_bonus, cha_bonus FROM ${tableName} WHERE ${idType} = ?`).get(id);
       values = utils.getNonNullValues(data);
 
-      numStats = Object.keys(values).length-2;
+      numStats = Object.keys(values).length;
 
       if(numStats === 0) {
         output += elemName + " doesn't have any bonuses.";

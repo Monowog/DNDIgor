@@ -3,6 +3,8 @@ A Discord bot used to track character names, stats, items, spells, and more.
 
 - [List of Commands](#commands)
 
+For commands, square brackets '[]' represent a required input, whereas parentheses '()' represent optional input.
+
 
 ## Commands
 - [Character Commands](#character-commands)
@@ -64,7 +66,7 @@ A Discord bot used to track character names, stats, items, spells, and more.
 
 - /list-items: Responds with a list of all items in the item pool.
 
-- /set-item-info [item] (rarity|desc|cost|weight): Updates an item's characteristics to new values. 
+- /set-item-info [item] (rarity|desc|cost|weight|bonuses): Updates an item's characteristics to new values. 
 
 - /take-item [character] [item] (quantity): Takes one or a specified number of an item from a character. If quantity >= number of the item in inventory, erases it from inventory.
 
@@ -94,7 +96,7 @@ A Discord bot used to track character names, stats, items, spells, and more.
 
 - /list-weapons: Responds with a list of all weapons in the weapon pool.
 
-- /set-weapon-info [weapon] (rarity|desc|damage|weight): Updates a weapon's characteristics to new values.
+- /set-weapon-info [weapon] (rarity|desc|damage|range|weight): Updates a weapon's characteristics to new values.
 
 - /take-weapon [character] [weapon]: Removes a weapon from a character's inventory.
 

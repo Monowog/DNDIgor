@@ -21,7 +21,7 @@ module.exports = {
       const data = db.prepare(`SELECT hp, max_hp, str, dex, con, int, wis, cha, speed FROM ${tableName} WHERE ${idType} = ?`).get(id);
       values = utils.getNonNullValues(data);
 
-      numStats = Object.keys(values).length-2;
+      numStats = Object.keys(values).length;
 
       if(numStats === 0) {
         output += elemName + " hasn't input any stats yet.";
